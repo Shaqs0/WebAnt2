@@ -25,8 +25,41 @@
             </ul>
         </nav>
     </header>
-
     <main class="main-content">
+        <div class="img-container">
+            <img src="./src/images/characters.png">
+        </div>
+
+        <div class="filters-container">
+        <form id="filtersForm" class="filters-form">
+            <input type="text" id="name" name="name" placeholder="Filter by name..." class="filter-input" />
+            
+            <select id="species" name="species" class="filter-select">
+                <option value="">Species</option>
+                <option value="Human">Human</option>
+                <option value="Alien">Alien</option>
+                <option value="Animal">Animal</option>
+            </select>
+            
+            <select id="gender" name="gender" class="filter-select">
+                <option value="">Gender</option>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+                <option value="Genderless">Genderless</option>
+                <option value="unknown">Unknown</option>
+            </select>
+            
+            <select id="status" name="status" class="filter-select">
+                <option value="">Status</option>
+                <option value="alive">Alive</option>
+                <option value="dead">Dead</option>
+                <option value="unknown">Unknown</option>
+            </select>
+        </form>
+    </div>
+    <div id="loader" class="loader hidden">
+    <div class="spinner"></div>
+    </div>
         <div class="characters-container" id="charactersContainer">
         </div>
         <div class="load-more-container">
