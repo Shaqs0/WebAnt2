@@ -1,0 +1,40 @@
+.head {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    box-shadow: -2px 0px 8px 2px rgba(0, 0, 0, 0.10);
+}
+
+.header_logo {
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   margin: 6px 0px 5px 0px;
+}
+
+.header_logo a {
+  display: block; 
+  line-height: 0; 
+}
+
+
+.header_logo img{
+    width: 46px;
+    height: 49px;
+}
+
+.header__menu {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 24px;
+}
+
+.header__menu-item {
+    display: flex;
+    font-family: 'Karla';
+    font-size: 18px;
+    font-weight: 700;
+
+}
+
