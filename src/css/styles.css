@@ -1,6 +1,6 @@
 @import url('../blocks/header.css');
 @import url('../blocks/footer.css');
-@import url('../css/pages-css/index.css');
+@import url('/src/css/pages-css/index.css');
 
 
 /* {
