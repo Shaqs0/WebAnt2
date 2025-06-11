@@ -1,0 +1,83 @@
+.character-detail {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+  font-family: sans-serif;
+}
+
+.go-back {
+  display: inline-block;
+  margin-bottom: 1rem;
+  text-decoration: none;
+  color: #333;
+  font-weight: bold;
+}
+
+.character-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.character-avatar {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.character-name {
+  font-size: 2rem;
+  margin-top: 1rem;
+}
+
+.character-info-sections {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+@media (min-width: 768px) {
+  .character-info-sections {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+}
+
+.character-info,
+.character-episodes {
+  flex: 1;
+}
+
+.character-info h2,
+.character-episodes h2 {
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
+  color: #888;
+}
+
+.character-info ul,
+.character-episodes ul {
+  list-style: none;
+  padding: 0;
+}
+
+.character-info li,
+.character-episodes li {
+  margin-bottom: 0.8rem;
+}
+
+.character-episodes li a {
+  text-decoration: none;
+  color: #000;
+  display: block;
+  padding: 0.5rem 0;
+  border-bottom: 1px solid #eee;
+}
+
+.character-episodes li strong {
+  display: block;
+  font-weight: bold;
+}

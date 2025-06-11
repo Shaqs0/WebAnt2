@@ -9,6 +9,7 @@ export interface Character {
         name: string;
     };
     location: {
+        url: any;
         name: string;
     };
     image: string;

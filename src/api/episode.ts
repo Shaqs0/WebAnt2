@@ -37,16 +37,17 @@ function renderEpisodeDetails(episode: Episode): void {
   }
 }
 
-function renderCharacters(characters: Character[]): void {
+function renderCharacters(characters: Character[]): void  {
   const castList = document.getElementById('castList');
   if (!castList) return;
 
   characters.forEach(character => {
     const div = document.createElement('div');
-    div.className = 'cast-member';
+    div.className = 'episode--cast-member';
     div.innerHTML = `
       <img src="${character.image}" alt="${character.name}">
-      <br>${character.name}<br><small>${character.species}</small>
+      <div><strong>${character.name}</strong></div>
+      <small>${character.species}</small>
     `;
     div.addEventListener('click', () => {
       window.location.href = `character.html?id=${character.id}`;
@@ -54,6 +55,7 @@ function renderCharacters(characters: Character[]): void {
     castList.appendChild(div);
   });
 }
+
 
 async function loadEpisode(): Promise<void> {
   try {

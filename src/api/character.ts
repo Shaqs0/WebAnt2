@@ -45,35 +45,55 @@ const loadCharacter = async (id: string) => {
     }
 };
 
-
 const renderCharacter = (character: Character, episodes: Episode[]) => {
-    const container = document.getElementById("characterDetails");
-    if (!container) return;
+  const container = document.getElementById("characterDetails");
+  if (!container) return;
 
-    container.innerHTML = `
-        <div class="character-profile">
-            <img src="${character.image}" alt="${character.name}" class="character-detail-image" />
-            <h1>${character.name}</h1>
-            <p><strong>Status:</strong> ${character.status}</p>
-            <p><strong>Species:</strong> ${character.species}</p>
-            <p><strong>Gender:</strong> ${character.gender}</p>
-            <p><strong>Origin:</strong> ${character.origin.name}</p>
-            <p><strong>Location:</strong> ${character.location.name}</p>
-            <h2>Episodes:</h2>
-            <ul>
-              
-                ${episodes.map(ep => `
-                    <li>
-                        <a href="episode.html?id=${ep.id}">
-                            ${ep.episode} - ${ep.name}
-                        </a>
-                    </li>`).join("")}
-        
+  container.innerHTML = `
+    <div class="character-detail">
+      <a class="go-back" href="index.html">← GO BACK</a>
+      <div class="character-header">
+        <img src="${character.image}" alt="${character.name}" class="character-avatar" />
+        <h1 class="character-name">${character.name}</h1>
+      </div>
 
-            </ul>
-        </div>
-    `;
+      <div class="character-info-sections">
+        <section class="character-info">
+          <h2>Informations</h2>
+          <ul>
+            <li><strong>Gender:</strong> ${character.gender}</li>
+            <li><strong>Status:</strong> ${character.status}</li>
+            <li><strong>Species:</strong> ${character.species}</li>
+            <li><strong>Origin:</strong> ${character.origin.name}</li>
+            <li><strong>Type:</strong> ${character.type || "Unknown"}</li>
+            <li><strong>Location:</strong> 
+            ${character.location.url
+                ? `<a href="location.html?id=${character.location.url.split("/").pop()}">${character.location.name}</a>`
+                : character.location.name}
+            </li>
+
+          </ul>
+        </section>
+
+        <section class="character-episodes">
+          <h2>Episodes</h2>
+          <ul>
+            ${episodes.map(ep => `
+              <li>
+                <a href="episode.html?id=${ep.id}">
+                  <strong>${ep.episode}</strong>
+                  <div>${ep.name}</div>
+                  <small>${new Date(ep.air_date).toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" })}</small>
+                </a>
+              </li>
+            `).join("")}
+          </ul>
+        </section>
+      </div>
+    </div>
+  `;
 };
+
 
 document.addEventListener("DOMContentLoaded", () => {
     const id = getCharacterIdFromURL();

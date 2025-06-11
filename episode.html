@@ -1,17 +1,40 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Episode Details</title>
-  <link rel="stylesheet" href="episode.css">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&family=Karla:ital,wght@0,200..800;1,200..800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="src/css/styles.css"/>
 </head>
 <body>
-  <a href="episodes.html" class="back-link">← Back to Episodes</a>
-  <h1 id="episodeTitle">Loading...</h1>
-  <p id="episodeInfo"></p>
-  <h2>Cast</h2>
-  <div class="cast" id="castList"></div>
+  <header class="head">
+    <div class="header_logo">
+      <a href="index.html">
+        <img src="src/images/icons/header_logo.svg" alt="Rick and Morty Logo" />
+      </a>
+    </div>
+    <nav class="header__nav">
+      <ul class="header__menu">
+        <li class="header__menu-item"><a href="index.html" class="header__link">Characters</a></li>
+        <li class="header__menu-item"><a href="locations.html" class="header__link">Locations</a></li>
+        <li class="header__menu-item"><a href="episodes.html" class="header__link">Episodes</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <a href="episodes.html" class="episode--back-link">← Go Back</a>
+
+  <main class="episode--details">
+    <h1 class="episode--title">Pilot</h1>
+    <div class="episode--meta">
+      <div><strong>Episode</strong><br> S01E01</div>
+      <div><strong>Date</strong><br> December 2, 2013</div>
+    </div>
+
+    <h2 class="episode--cast-heading">Cast</h2>
+    <div class="episode--cast" id="castList"></div>
+  </main>
 
   <script src="./src/dist/api/episode.js" type="module"></script>
 </body>

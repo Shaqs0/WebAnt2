@@ -27,21 +27,21 @@
     </nav>
   </header>
   
-  <div class="filters">
-    <input type="text" id="nameFilter" placeholder="Filter by name...">
-    <select id="typeFilter">
-      <option value="">Type</option>
-    </select>
-    <select id="dimensionFilter">
-      <option value="">Dimension</option>
-    </select>
-  </div>
+ <div class="filters--locations">
+  <input type="text" id="nameFilter" placeholder="Filter by name..." class="filter--locations">
+  <select id="typeFilter" class="filter--locations">
+    <option value="">Type</option>
+  </select>
+  <select id="dimensionFilter" class="filter--locations">
+    <option value="">Dimension</option>
+  </select>
+</div>
 
-  <div class="locations" id="locationsContainer"></div>
+<div class="cards--locations" id="locationsContainer"></div>
 
-  <div class="load-more-container">
-    <button class="load-more" id="loadMoreBtn">LOAD MORE</button>
-  </div>
+<div class="load-more-container--locations">
+  <button class="load-more--locations" id="loadMoreBtn">LOAD MORE</button>
+</div>
 
   <script src="./src/dist/api/locations.js" type="module"></script>
 </body>

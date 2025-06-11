@@ -72,7 +72,11 @@ function renderMore() {
     locationsToRender.forEach(loc => {
         const div = document.createElement('div');
         div.className = 'location-card';
-        div.innerHTML = `<strong>${loc.name}</strong><br><small>${loc.type}</small><br><small>${loc.dimension}</small>`;
+        div.innerHTML = `
+    <strong>${loc.name}</strong>
+    <small>${loc.type}</small>
+    <small>${loc.dimension}</small>
+  `;
         div.addEventListener('click', () => {
             window.location.href = `/location.html?id=${loc.id}`;
         });

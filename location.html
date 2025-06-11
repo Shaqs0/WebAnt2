@@ -26,11 +26,26 @@
             </ul>
         </nav>
     </header>
-    
-    <div class="location-info" id="locationInfo">
-        <h1>Loading location...</h1>
+   <div class="location-details__back">
+  <a href="locations.html" class="location-details__go-back">← GO BACK</a>
+</div>
+
+<section class="location-details__info" id="locationInfo">
+  <h1 class="location-details__name">Loading location...</h1>
+  <div class="location-details__meta">
+    <div>
+      <p class="location-details__meta-label">Type</p>
+      <p class="location-details__meta-value" id="locationType">Loading...</p>
     </div>
-    <div class="residents" id="residentsContainer"></div>
+    <div>
+      <p class="location-details__meta-label">Dimension</p>
+      <p class="location-details__meta-value" id="locationDimension">Loading...</p>
+    </div>
+  </div>
+</section>
+
+<h2 class="location-details__residents-title">Residents</h2>
+<div class="location-details__residents" id="residentsContainer"></div>
 
     <script src="./src/dist/api/location.js" type="module"></script>
 </body>
