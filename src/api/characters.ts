@@ -1,23 +1,6 @@
-export interface Character {
-    id: number;
-    name: string;
-    status: string;
-    species: string;
-    type: string;
-    gender: string;
-    origin: {
-        name: string;
-    };
-    location: {
-        name: string;
-    };
-    image: string;
-    episode: string[];
-    url: string;
-    created: string;
-}
+import { Character } from "../types/character";
 
-interface ApiResponse {
+export interface ApiResponse {
     info: {
         count: number;
         pages: number;
@@ -92,9 +75,8 @@ const loadCharacters = async () => {
 const displayCharacters = (characters: Character[]) => {
     const container = document.getElementById("charactersContainer");
     if (!container) return;
-
     const charactersHTML = characters.map(character => `
-        <div class="character-card">
+        <div class="character-card" data-id="${character.id}">
             <img src="${character.image}" alt="${character.name}" class="character-image">
             <div class="character-info">
                 <h2 class="character-name">${character.name}</h2>
@@ -107,6 +89,7 @@ const displayCharacters = (characters: Character[]) => {
             </div>
         </div>
     `).join("");
+
 
     container.innerHTML += charactersHTML;
 };
@@ -152,8 +135,24 @@ const setupLoadMoreButton = () => {
     }
 };
 
+const setupCardClick = () => {
+    const container = document.getElementById("charactersContainer");
+
+    container?.addEventListener("click", (e) => {
+        const target = e.target as HTMLElement;
+        const card = target.closest(".character-card") as HTMLElement | null;
+
+        if (card && card.dataset.id) {
+            const characterId = card.dataset.id;
+            window.location.href = `character.html?id=${characterId}`;
+        }
+    });
+};
+
+
 document.addEventListener("DOMContentLoaded", () => {
     setupFilterInputs();
     setupLoadMoreButton();
     loadCharacters();
+    setupCardClick();
 });

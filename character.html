@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Character Detail</title>
+  <link rel="stylesheet" href="src/css/styles.css" />
+</head>
+<body>
+    <header class="head">
+        <div class="header_logo">
+            <a href="index.html">
+             <img src="src/images/icons/header_logo.svg" alt="Rick and Morty Logo"/>
+            </a>
+        </div>
+        <nav class="header__nav">
+            <ul class="header__menu">
+                <li class="header__menu-item"><a href="index.html" class="header__link">Characters</a></li>
+                <li class="header__menu-item"><a href="locations.html" class="header__link">Locations</a></li>
+                <li class="header__menu-item"><a href="episodes.html" class="header__link">Episodes</a></li>
+            </ul>
+        </nav>
+    </header>
+    <div class="back">
+    <a href="index.html">← Back to Characters</a>
+    </div>
+<div id="loader" class="loader hidden">
+    <div class="spinner"></div>
+    </div>
+  <main id="characterDetails" class="character-detail-container">
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <script src="./src/dist/api/character.js" type="module"></script>
+</body>
+</html>

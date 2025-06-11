@@ -67,7 +67,7 @@ const displayCharacters = (characters) => {
     if (!container)
         return;
     const charactersHTML = characters.map(character => `
-        <div class="character-card">
+        <div class="character-card" data-id="${character.id}">
             <img src="${character.image}" alt="${character.name}" class="character-image">
             <div class="character-info">
                 <h2 class="character-name">${character.name}</h2>
@@ -118,9 +118,21 @@ const setupLoadMoreButton = () => {
         loadMoreBtn.addEventListener("click", loadCharacters);
     }
 };
+const setupCardClick = () => {
+    const container = document.getElementById("charactersContainer");
+    container === null || container === void 0 ? void 0 : container.addEventListener("click", (e) => {
+        const target = e.target;
+        const card = target.closest(".character-card");
+        if (card && card.dataset.id) {
+            const characterId = card.dataset.id;
+            window.location.href = `character.html?id=${characterId}`;
+        }
+    });
+};
 document.addEventListener("DOMContentLoaded", () => {
     setupFilterInputs();
     setupLoadMoreButton();
     loadCharacters();
+    setupCardClick();
 });
 export {};

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="src/images/icons/header_logo.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&family=Karla:ital,wght@0,200..800;1,200..800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="src/css/styles.css" />
+    <link rel="stylesheet" href="location.css" />
+    <title>Location Details</title>
+</head>
+<body>
+    <header class="head">
+        <div class="header_logo">
+            <a href="index.html">
+                <img src="src/images/icons/header_logo.svg" alt="Rick and Morty Logo"/>
+            </a>
+        </div>
+        <nav class="header__nav">
+            <ul class="header__menu">
+                <li class="header__menu-item"><a href="index.html" class="header__link">Characters</a></li>
+                <li class="header__menu-item"><a href="locations.html" class="header__link">Locations</a></li>
+                <li class="header__menu-item"><a href="episodes.html" class="header__link">Episodes</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <div class="location-info" id="locationInfo">
+        <h1>Loading location...</h1>
+    </div>
+    <div class="residents" id="residentsContainer"></div>
+
+    <script src="./src/dist/api/location.js" type="module"></script>
+</body>
+</html>
