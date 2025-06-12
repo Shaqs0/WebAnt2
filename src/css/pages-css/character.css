@@ -1,8 +1,60 @@
 .character-detail {
   max-width: 800px;
   margin: 0 auto;
-  padding: 2rem 1rem;
-  font-family: sans-serif;
+  padding: 2.25rem 1rem;
+}
+
+.character-details_info {
+  display: flex;
+  flex-direction: column;
+  color: #6E798C;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 20px;
+  letter-spacing: 0.25px;
+  padding: 12px 0;
+  border-bottom: 1px solid rgba(33, 33, 33, 0.08);
+}
+
+.character-details_info strong {
+  color: #081F32;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 24px;
+  letter-spacing: 0.15px;
+  margin-bottom: 4px;
+}
+
+.character-info-details h2 {
+  color: #8E8E93;
+  font-feature-settings: 'liga' off, 'clig' off;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 24px;
+  letter-spacing: 0.15px;
+}
+
+.location-content {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.character-details_info .character_details-location {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #6E798C;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 20px;
+  letter-spacing: 0.25px;
+  text-decoration: none;
+  width: 100%;
+  margin-top: 4px;
 }
 
 .go-back {
@@ -39,32 +91,139 @@
   margin-top: 2rem;
 }
 
+.list_character-details {
+  margin-top: 45px;
+}
+
+.location-arrow {
+  width: 24px;
+  height: 24px;
+  transition: transform 0.2s ease;
+}
+
+.character-details_info .character_details-location:hover .location-arrow {
+  transform: translateX(3px);
+}
+
+.list_character-episodes-details {
+  margin-top: 46px;
+  list-style: none;
+  padding: 0;
+}
+
+.list_character-episodes-details .episode-item {
+  border-bottom: 1px solid rgba(33, 33, 33, 0.08);
+  padding: 12px 0;
+}
+
+.list_character-episodes-details .episode-link {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  text-decoration: none;
+  color: inherit;
+  width: 100%;
+  padding: 8px 0;
+}
+
+.list_character-episodes-details .episode-content {
+  flex: 1;
+}
+
+.list_character-episodes-details .episode-arrow {
+  width: 24px;
+  height: 24px;
+  margin-left: 16px;
+  transition: transform 0.2s ease;
+}
+
+.list_character-episodes-details .episode-link:hover .episode-arrow {
+  transform: translateX(3px);
+}
+
+.list_character-episodes-details strong {
+  color: #081F32;
+  font-feature-settings: 'liga' off, 'clig' off;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 24px;
+  letter-spacing: 0.15px;
+}
+
+.list_character-episodes-details div {
+  color: #6E798C;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 20px;
+  letter-spacing: 0.25px;
+}
+
+.list_character-episodes-details small {
+  color: #8E8E93;
+  font-family: Roboto;
+  font-size: 10px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 16px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+}
+
+.episodes-container {
+  max-height: none;
+  overflow-y: visible;
+}
+
+
 @media (min-width: 768px) {
   .character-info-sections {
     flex-direction: row;
     justify-content: space-between;
   }
+
+   .character-info-sections {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  .character-episodes.many-episodes .episodes-container {
+    max-height: 500px;
+    overflow-y: auto;
+    padding-right: 8px;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(0, 0, 0, 0.2) transparent;
+  }
+
+  .character-episodes.many-episodes .episodes-container::-webkit-scrollbar {
+    width: 4px;
+  }
+
+  .character-episodes.many-episodes .episodes-container::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 0, 0, 0.2);
+    border-radius: 2px;
+  }
 }
 
-.character-info,
+.character-info-details,
 .character-episodes {
   flex: 1;
 }
 
-.character-info h2,
+.character-info-details h2,
 .character-episodes h2 {
-  font-size: 1.2rem;
   margin-bottom: 1rem;
   color: #888;
 }
 
-.character-info ul,
+.character-info-details ul,
 .character-episodes ul {
   list-style: none;
   padding: 0;
 }
 
-.character-info li,
+.character-info-details li,
 .character-episodes li {
   margin-bottom: 0.8rem;
 }
@@ -73,8 +232,6 @@
   text-decoration: none;
   color: #000;
   display: block;
-  padding: 0.5rem 0;
-  border-bottom: 1px solid #eee;
 }
 
 .character-episodes li strong {

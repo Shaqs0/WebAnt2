@@ -51,6 +51,7 @@ const renderCharacter = (character, episodes) => {
     const container = document.getElementById("characterDetails");
     if (!container)
         return;
+    const hasManyEpisodes = episodes.length > 6;
     container.innerHTML = `
     <div class="character-detail">
       <a class="go-back" href="index.html">← GO BACK</a>
@@ -60,36 +61,45 @@ const renderCharacter = (character, episodes) => {
       </div>
 
       <div class="character-info-sections">
-        <section class="character-info">
+        <section class="character-info-details">
           <h2>Informations</h2>
-          <ul>
-            <li><strong>Gender:</strong> ${character.gender}</li>
-            <li><strong>Status:</strong> ${character.status}</li>
-            <li><strong>Species:</strong> ${character.species}</li>
-            <li><strong>Origin:</strong> ${character.origin.name}</li>
-            <li><strong>Type:</strong> ${character.type || "Unknown"}</li>
-            <li><strong>Location:</strong> 
-            ${character.location.url
-        ? `<a href="location.html?id=${character.location.url.split("/").pop()}">${character.location.name}</a>`
+          <ul class='list_character-details'>
+            <li class="character-details_info"><strong>Gender</strong> ${character.gender}</li>
+            <li class="character-details_info"><strong>Status</strong> ${character.status}</li>
+            <li class="character-details_info"><strong>Species</strong> ${character.species}</li>
+            <li class="character-details_info"><strong>Origin</strong> ${character.origin.name}</li>
+            <li class="character-details_info"><strong>Type</strong> ${character.type || "Unknown"}</li>
+            <li class="character-details_info location-item">
+              <div class="location-content">
+                <strong>Location</strong>
+                ${character.location.url
+        ? `<a href="location.html?id=${character.location.url.split("/").pop()}" class='character_details-location'>
+                      <span>${character.location.name}</span>
+                      <img src="src/images/icons/chevron_right_24px.svg" alt="" class="location-arrow">
+                    </a>`
         : character.location.name}
+              </div>
             </li>
-
           </ul>
         </section>
-
-        <section class="character-episodes">
+        <section class="character-episodes ${hasManyEpisodes ? 'many-episodes' : ''}">
           <h2>Episodes</h2>
-          <ul>
-            ${episodes.map(ep => `
-              <li>
-                <a href="episode.html?id=${ep.id}">
-                  <strong>${ep.episode}</strong>
-                  <div>${ep.name}</div>
-                  <small>${new Date(ep.air_date).toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" })}</small>
-                </a>
-              </li>
-            `).join("")}
-          </ul>
+          <div class="episodes-container">
+            <ul class='list_character-episodes-details'>
+              ${episodes.map(ep => `
+                <li class="episode-item">
+                  <a href="episode.html?id=${ep.id}" class="episode-link">
+                    <div class="episode-content">
+                      <strong>${ep.episode}</strong>
+                      <div>${ep.name}</div>
+                      <small>${new Date(ep.air_date).toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" })}</small>
+                    </div>
+                    <img src="src/images/icons/chevron_right_24px.svg" alt="" class="episode-arrow">
+                  </a>
+                </li>
+              `).join("")}
+            </ul>
+          </div>
         </section>
       </div>
     </div>
