@@ -9,6 +9,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&family=Karla:ital,wght@0,200..800;1,200..800&display=swap" rel="stylesheet">
   <title>Characters</title>
   <link rel="stylesheet" href="src/css/styles.css" />
+  <link rel="stylesheet" href="src/css/pages-css/index.css" />
 </head>
 <body>
     <header class="head">
@@ -27,34 +28,46 @@
     </header>
     <main class="main-content">
         <div class="img-container">
-            <img src="./src/images/characters.png">
+            <img src="./src/images/characters.png" alt="Characters banner">
         </div>
 
         <div class="filters-container">
         <form id="filtersForm" class="filters-form">
-            <input type="text" id="name" name="name" placeholder="Filter by name..." class="filter-input" />
+            <div class="search-input-container">
+                <img src="src/images/icons/search_icon.svg" alt="Search" class="search-icon">
+                <input type="text" id="name" name="name" placeholder="Filter by name..." class="filter-input search-input" />
+            </div>
             
-            <select id="species" name="species" class="filter-select">
-                <option value="">Species</option>
-                <option value="Human">Human</option>
-                <option value="Alien">Alien</option>
-                <option value="Animal">Animal</option>
-            </select>
+            <div class="select-wrapper">
+                <select id="species" name="species" class="filter-select">
+                    <option value="">Species</option>
+                    <option value="Human">Human</option>
+                    <option value="Alien">Alien</option>
+                    <option value="Animal">Animal</option>
+                </select>
+                <img src="src/images/icons/arrow-drop-down.svg" alt="▼" class="select-arrow">
+            </div>
             
-            <select id="gender" name="gender" class="filter-select">
-                <option value="">Gender</option>
-                <option value="Male">Male</option>
-                <option value="Female">Female</option>
-                <option value="Genderless">Genderless</option>
-                <option value="unknown">Unknown</option>
-            </select>
+            <div class="select-wrapper">
+                <select id="gender" name="gender" class="filter-select">
+                    <option value="">Gender</option>
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                    <option value="Genderless">Genderless</option>
+                    <option value="unknown">Unknown</option>
+                </select>
+                <img src="src/images/icons/arrow-drop-down.svg" alt="▼" class="select-arrow">
+            </div>
             
-            <select id="status" name="status" class="filter-select">
-                <option value="">Status</option>
-                <option value="alive">Alive</option>
-                <option value="dead">Dead</option>
-                <option value="unknown">Unknown</option>
-            </select>
+            <div class="select-wrapper">
+                <select id="status" name="status" class="filter-select">
+                    <option value="">Status</option>
+                    <option value="alive">Alive</option>
+                    <option value="dead">Dead</option>
+                    <option value="unknown">Unknown</option>
+                </select>
+                <img src="src/images/icons/arrow-drop-down.svg" alt="▼" class="select-arrow">
+            </div>
         </form>
     </div>
     <div id="loader" class="loader hidden">

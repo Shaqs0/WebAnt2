@@ -80,12 +80,7 @@ const displayCharacters = (characters: Character[]) => {
             <img src="${character.image}" alt="${character.name}" class="character-image">
             <div class="character-info">
                 <h2 class="character-name">${character.name}</h2>
-                <p class="character-status">
-                    <span class="status-indicator ${character.status.toLowerCase()}"></span>
-                    ${character.status} - ${character.species}
-                </p>
-                <p class="character-location">Last known location: ${character.location.name}</p>
-                <p class="character-origin">Origin: ${character.origin.name}</p>
+                <p class="character-species">${character.species}</p>
             </div>
         </div>
     `).join("");

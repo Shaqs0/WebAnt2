@@ -73,8 +73,8 @@
 }
 
 .character-avatar {
-  width: 150px;
-  height: 150px;
+  width: 300px;
+  height: 300px;
   border-radius: 50%;
   object-fit: cover;
 }
@@ -176,6 +176,17 @@
   overflow-y: visible;
 }
 
+.character-episodes h2 {
+  color:  #8E8E93;
+  font-feature-settings: 'liga' off, 'clig' off;
+  font-family: Roboto;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 24px; 
+  letter-spacing: 0.15px;
+}
+
 
 @media (min-width: 768px) {
   .character-info-sections {
@@ -211,11 +222,7 @@
   flex: 1;
 }
 
-.character-info-details h2,
-.character-episodes h2 {
-  margin-bottom: 1rem;
-  color: #888;
-}
+
 
 .character-info-details ul,
 .character-episodes ul {
@@ -223,10 +230,6 @@
   padding: 0;
 }
 
-.character-info-details li,
-.character-episodes li {
-  margin-bottom: 0.8rem;
-}
 
 .character-episodes li a {
   text-decoration: none;

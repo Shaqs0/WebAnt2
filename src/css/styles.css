@@ -1,15 +1,7 @@
 @import url('../blocks/header.css');
 @import url('../blocks/footer.css');
-@import url('/src/css/pages-css/index.css');
-@import url('./pages-css/character.css');
-@import url('./pages-css/episode.css');
-@import url('./pages-css/episodes.css');
-@import url('./pages-css/locations.css');
-@import url('./pages-css/location.css');
 
-
-
-/* * {
+/* *{
       outline: 1px solid grey !important;
 } */
 
