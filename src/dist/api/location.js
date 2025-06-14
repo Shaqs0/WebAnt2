@@ -40,20 +40,20 @@ function loadLocationDetails() {
                 throw new Error('No location ID provided');
             const location = yield fetchLocation(id);
             locationInfo.innerHTML = `
-    <div class="location-header">
-        <a href="locations.html" class="location-details__go-back">
-            <span class="go-back-content">
-                <img src="src/images/icons/arrow_back_24px.svg" alt="Back" class="back-arrow"/>
-                GO BACK
-            </span>
-        </a>
-        <h1 class="location-name">${location.name}</h1>
-    </div>
-    <div class='location-info'>
-        <p class="location-type"><strong>Type</strong> ${location.type}</p>
-        <p class="location-dimension"><strong>Dimension</strong> ${location.dimension}</p>
-    </div>
-`;
+            <div class="location-header">
+                <a href="locations.html" class="location-details__go-back">
+                    <span class="go-back-content">
+                        <img src="src/images/icons/arrow_back_24px.svg" alt="Back" class="back-arrow"/>
+                        GO BACK
+                    </span>
+                </a>
+                <h1 class="location-name">${location.name}</h1>
+            </div>
+            <div class='location-info'>
+                <p class="location-type"><strong>Type</strong> ${location.type}</p>
+                <p class="location-dimension"><strong>Dimension</strong> ${location.dimension}</p>
+            </div>
+        `;
             const residents = yield fetchResidents(location.residents);
             if (residents.length === 0) {
                 residentsContainer.innerHTML = '<p>No residents found.</p>';

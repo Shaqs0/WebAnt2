@@ -7,110 +7,126 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-let nextPage = 'https://rickandmortyapi.com/api/episode';
-const episodesContainer = document.getElementById('episodes');
-const loadMoreButton = document.getElementById('loadMore');
-const searchInput = document.getElementById('search');
-document.addEventListener('DOMContentLoaded', () => {
-    loadInitialEpisodes();
-    setupEventListeners();
-});
-function setupEventListeners() {
-    loadMoreButton.addEventListener('click', handleLoadMore);
-    searchInput.addEventListener('input', handleSearch);
-}
-function loadInitialEpisodes() {
-    return __awaiter(this, void 0, void 0, function* () {
-        if (nextPage) {
-            yield fetchEpisodes(nextPage);
-        }
-    });
-}
-function fetchEpisodes(url) {
-    return __awaiter(this, void 0, void 0, function* () {
-        try {
-            loadMoreButton.disabled = true;
-            loadMoreButton.textContent = 'Loading...';
-            const response = yield fetch(url);
-            if (!response.ok)
-                throw new Error('Failed to fetch episodes');
-            const data = yield response.json();
-            nextPage = data.info.next;
-            renderEpisodes(data.results);
-        }
-        catch (error) {
-            console.error('Error fetching episodes:', error);
-            showError('Failed to load episodes. Please try again.');
-        }
-        finally {
-            loadMoreButton.disabled = false;
-            loadMoreButton.textContent = 'LOAD MORE';
-            updateLoadMoreButton();
-        }
-    });
-}
-function renderEpisodes(episodes) {
-    episodes.forEach((episode) => {
-        const card = document.createElement('div');
-        card.className = 'episodes--card';
-        card.innerHTML = `
-      <strong>${episode.name}</strong>
-      <br>${episode.air_date}
-      <br><em>${episode.episode}</em>
-    `;
-        card.addEventListener('click', () => {
-            window.location.href = `episode.html?id=${episode.id}`;
-        });
-        episodesContainer.appendChild(card);
-    });
-}
-function handleLoadMore() {
-    return __awaiter(this, void 0, void 0, function* () {
-        if (nextPage) {
-            yield fetchEpisodes(nextPage);
-        }
-    });
-}
-function handleSearch() {
-    return __awaiter(this, void 0, void 0, function* () {
-        const query = searchInput.value.trim();
-        episodesContainer.innerHTML = '';
-        nextPage = null;
-        if (!query) {
-            nextPage = 'https://rickandmortyapi.com/api/episode';
-            yield fetchEpisodes(nextPage);
-            return;
-        }
-        try {
-            const response = yield fetch(`https://rickandmortyapi.com/api/episode?name=${encodeURIComponent(query)}`);
-            if (!response.ok)
-                throw new Error('Search failed');
-            const data = yield response.json();
-            renderEpisodes(data.results);
-            if (data.results.length === 0) {
-                showNoResults();
+class EpisodeLoader {
+    constructor() {
+        this.nextPage = 'https://rickandmortyapi.com/api/episode';
+        this.episodesContainer = document.getElementById('episodes');
+        this.loadMoreButton = document.getElementById('loadMore');
+        this.searchInput = document.getElementById('search');
+        this.init();
+    }
+    init() {
+        this.loadInitialEpisodes();
+        this.setupEventListeners();
+        this.loadMoreButton.classList.add('load-more-btn');
+    }
+    setupEventListeners() {
+        this.loadMoreButton.addEventListener('click', () => this.handleLoadMore());
+        this.searchInput.addEventListener('input', () => this.handleSearch());
+    }
+    loadInitialEpisodes() {
+        return __awaiter(this, void 0, void 0, function* () {
+            if (this.nextPage) {
+                yield this.fetchEpisodes(this.nextPage);
             }
+        });
+    }
+    fetchEpisodes(url) {
+        return __awaiter(this, void 0, void 0, function* () {
+            try {
+                this.setLoadingState(true);
+                const response = yield fetch(url);
+                if (!response.ok)
+                    throw new Error('Failed to fetch episodes');
+                const data = yield response.json();
+                this.nextPage = data.info.next;
+                this.renderEpisodes(data.results);
+            }
+            catch (error) {
+                console.error('Error fetching episodes:', error);
+                this.showError('Failed to load episodes. Please try again.');
+            }
+            finally {
+                this.setLoadingState(false);
+                this.updateLoadMoreButton();
+            }
+        });
+    }
+    setLoadingState(isLoading) {
+        this.loadMoreButton.disabled = isLoading;
+        if (isLoading) {
+            this.loadMoreButton.classList.add('loading');
         }
-        catch (error) {
-            console.error('Search error:', error);
-            showNoResults();
+        else {
+            this.loadMoreButton.classList.remove('loading');
+            this.loadMoreButton.textContent = 'LOAD MORE';
         }
-    });
+    }
+    renderEpisodes(episodes) {
+        episodes.forEach(episode => {
+            const card = document.createElement('div');
+            card.className = 'episodes-card';
+            card.innerHTML = `
+        <strong>${episode.name}</strong>
+        <br><p>${episode.air_date}</p>
+        <br><em>${episode.episode}</em>
+      `;
+            card.addEventListener('click', () => {
+                window.location.href = `episode.html?id=${episode.id}`;
+            });
+            this.episodesContainer.appendChild(card);
+        });
+    }
+    handleLoadMore() {
+        return __awaiter(this, void 0, void 0, function* () {
+            if (this.nextPage) {
+                yield this.fetchEpisodes(this.nextPage);
+            }
+        });
+    }
+    handleSearch() {
+        return __awaiter(this, void 0, void 0, function* () {
+            const query = this.searchInput.value.trim();
+            this.episodesContainer.innerHTML = '';
+            this.nextPage = null;
+            if (!query) {
+                this.nextPage = 'https://rickandmortyapi.com/api/episode';
+                yield this.fetchEpisodes(this.nextPage);
+                return;
+            }
+            try {
+                const response = yield fetch(`https://rickandmortyapi.com/api/episode?name=${encodeURIComponent(query)}`);
+                if (!response.ok)
+                    throw new Error('Search failed');
+                const data = yield response.json();
+                this.renderEpisodes(data.results);
+                if (data.results.length === 0) {
+                    this.showNoResults();
+                }
+            }
+            catch (error) {
+                console.error('Search error:', error);
+                this.showNoResults();
+            }
+        });
+    }
+    updateLoadMoreButton() {
+        this.loadMoreButton.style.display = this.nextPage ? 'flex' : 'none';
+    }
+    showNoResults() {
+        const message = document.createElement('p');
+        message.className = 'episodes--no-results';
+        message.textContent = 'No episodes found matching your search.';
+        this.episodesContainer.appendChild(message);
+    }
+    showError(message) {
+        const errorElement = document.createElement('p');
+        errorElement.className = 'episodes--no-results';
+        errorElement.textContent = message;
+        this.episodesContainer.appendChild(errorElement);
+    }
 }
-function updateLoadMoreButton() {
-    loadMoreButton.style.display = nextPage ? 'inline-block' : 'none';
-    loadMoreButton.className = 'episodes--load-more';
-}
-function showNoResults() {
-    const message = document.createElement('p');
-    message.className = 'episodes--no-results';
-    message.textContent = 'No episodes found matching your search.';
-    episodesContainer.appendChild(message);
-}
-function showError(message) {
-    const errorElement = document.createElement('p');
-    errorElement.className = 'episodes--no-results';
-    errorElement.textContent = message;
-    episodesContainer.appendChild(errorElement);
-}
+document.addEventListener('DOMContentLoaded', () => {
+    new EpisodeLoader();
+});
 export {};

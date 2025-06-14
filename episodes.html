@@ -23,19 +23,32 @@
             </ul>
         </nav>
     </header>
-  <h1>Rick and Morty Episodes</h1>
 
-  <input
-    type="text"
-    id="search"
-    class="episodes--search"
-    placeholder="Filter by name or episode (ex. S01E01)"
-  />
+     <main class="main-content">
+   <div class="img-container">
+        <img src="src/images/episodes.png" alt="Characters banner">
+    </div>
+  <div class="filters-container">
+  <form class="filters-form">
+    <div class="search-input-container">
+      <img src="src/images/icons/search_icon.svg" alt="Search" class="search-icon">
+      <input
+        type="text"
+        id="search"
+        class="search-input"
+        placeholder="Filter by name or episode (ex. S01E01)"
+        aria-label="Search episodes"
+      />
+    </div>
+  </form>
+</div>
 
-  <div class="episodes--grid" id="episodes"></div>
-
+  <div class="episodes-container" id="episodes"></div>
+<div class="load-more-container">
   <button class="episodes--load-more" id="loadMore">LOAD MORE</button>
+</div>
 
+  </main>
   <script src="./src/dist/api/episodes.js" type="module"></script>
 </body>
 </html>
