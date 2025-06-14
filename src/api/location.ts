@@ -2,6 +2,7 @@ import { Location } from "../types/locations";
 
 const locationInfo = document.getElementById('locationInfo') as HTMLElement;
 const residentsContainer = document.getElementById('residentsContainer') as HTMLElement;
+const backButtonContainer = document.querySelector('.location-details__back') as HTMLElement;
 
 interface Character {
     id: number;
@@ -37,10 +38,20 @@ async function loadLocationDetails(): Promise<void> {
 
         const location = await fetchLocation(id);
 
-        locationInfo.innerHTML = `
-            <h1>${location.name}</h1>
-            <p><strong>Type:</strong> ${location.type}</p>
-            <p><strong>Dimension:</strong> ${location.dimension}</p>
+       locationInfo.innerHTML = `
+            <div class="location-header">
+                <a href="locations.html" class="location-details__go-back">
+                    <span class="go-back-content">
+                        <img src="src/images/icons/arrow_back_24px.svg" alt="Back" class="back-arrow"/>
+                        GO BACK
+                    </span>
+                </a>
+                <h1 class="location-name">${location.name}</h1>
+            </div>
+            <div class='location-info'>
+                <p class="location-type"><strong>Type</strong> ${location.type}</p>
+                <p class="location-dimension"><strong>Dimension</strong> ${location.dimension}</p>
+            </div>
         `;
 
         const residents = await fetchResidents(location.residents);
@@ -55,8 +66,10 @@ async function loadLocationDetails(): Promise<void> {
             div.className = 'resident-card';
             div.innerHTML = `
                 <img src="${resident.image}" alt="${resident.name}" />
-                <h3>${resident.name}</h3>
-                <p>${resident.species}</p>
+                <div class="resident-info">
+                    <h3>${resident.name}</h3>
+                    <p>${resident.species}</p>
+                </div>
             `;
             div.addEventListener('click', () => {
                 window.location.href = `character.html?id=${resident.id}`;

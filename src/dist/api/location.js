@@ -9,6 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 const locationInfo = document.getElementById('locationInfo');
 const residentsContainer = document.getElementById('residentsContainer');
+const backButtonContainer = document.querySelector('.location-details__back');
 function getIdFromURL() {
     const params = new URLSearchParams(window.location.search);
     return params.get('id');
@@ -39,10 +40,20 @@ function loadLocationDetails() {
                 throw new Error('No location ID provided');
             const location = yield fetchLocation(id);
             locationInfo.innerHTML = `
-            <h1>${location.name}</h1>
-            <p><strong>Type:</strong> ${location.type}</p>
-            <p><strong>Dimension:</strong> ${location.dimension}</p>
-        `;
+    <div class="location-header">
+        <a href="locations.html" class="location-details__go-back">
+            <span class="go-back-content">
+                <img src="src/images/icons/arrow_back_24px.svg" alt="Back" class="back-arrow"/>
+                GO BACK
+            </span>
+        </a>
+        <h1 class="location-name">${location.name}</h1>
+    </div>
+    <div class='location-info'>
+        <p class="location-type"><strong>Type</strong> ${location.type}</p>
+        <p class="location-dimension"><strong>Dimension</strong> ${location.dimension}</p>
+    </div>
+`;
             const residents = yield fetchResidents(location.residents);
             if (residents.length === 0) {
                 residentsContainer.innerHTML = '<p>No residents found.</p>';
@@ -53,8 +64,10 @@ function loadLocationDetails() {
                 div.className = 'resident-card';
                 div.innerHTML = `
                 <img src="${resident.image}" alt="${resident.name}" />
-                <h3>${resident.name}</h3>
-                <p>${resident.species}</p>
+                <div class="resident-info">
+                    <h3>${resident.name}</h3>
+                    <p>${resident.species}</p>
+                </div>
             `;
                 div.addEventListener('click', () => {
                     window.location.href = `character.html?id=${resident.id}`;
