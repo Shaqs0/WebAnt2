@@ -1,83 +1,69 @@
 import { Character } from "../types/character";
 import { Episode } from "../types/episode";
 
-async function fetchEpisode(id: string): Promise<Episode> {
-  const response = await fetch(`https://rickandmortyapi.com/api/episode/${id}`);
-  if (!response.ok) {
-    throw new Error('Failed to fetch episode');
-  }
-  return response.json();
-}
+const episodeInfo = document.getElementById('episodeInfo') as HTMLElement;
+const charactersContainer = document.getElementById('charactersContainer') as HTMLElement;
+const episodeName = document.getElementById('episodeName') as HTMLElement;
+const episodeCode = document.getElementById('episodeCode') as HTMLElement;
+const episodeDate = document.getElementById('episodeDate') as HTMLElement;
 
-async function fetchCharacter(url: string): Promise<Character> {
-  const response = await fetch(url);
-  if (!response.ok) {
-    throw new Error('Failed to fetch character');
-  }
-  return response.json();
-}
-
-function displayError(message: string): void {
-  const errorElement = document.createElement('div');
-  errorElement.className = 'error-message';
-  errorElement.textContent = message;
-  document.body.appendChild(errorElement);
-}
-
-function renderEpisodeDetails(episode: Episode): void {
-  const titleElement = document.getElementById('episodeTitle');
-  const infoElement = document.getElementById('episodeInfo');
-
-  if (titleElement) {
-    titleElement.textContent = episode.name;
-  }
-
-  if (infoElement) {
-    infoElement.textContent = `${episode.air_date} | ${episode.episode}`;
-  }
-}
-
-function renderCharacters(characters: Character[]): void  {
-  const castList = document.getElementById('castList');
-  if (!castList) return;
-
-  characters.forEach(character => {
-    const div = document.createElement('div');
-    div.className = 'episode--cast-member';
-    div.innerHTML = `
-      <img src="${character.image}" alt="${character.name}">
-      <div><strong>${character.name}</strong></div>
-      <small>${character.species}</small>
-    `;
-    div.addEventListener('click', () => {
-      window.location.href = `character.html?id=${character.id}`;
-    });
-    castList.appendChild(div);
-  });
-}
-
-
-async function loadEpisode(): Promise<void> {
-  try {
+function getIdFromURL(): string | null {
     const params = new URLSearchParams(window.location.search);
-    const id = params.get('id');
-
-    if (!id) {
-      displayError('No episode ID found');
-      return;
-    }
-
-    const episode = await fetchEpisode(id);
-    renderEpisodeDetails(episode);
-
-    const characters = await Promise.all(
-      episode.characters.map(url => fetchCharacter(url))
-    );
-    renderCharacters(characters);
-  } catch (error) {
-    console.error('Error loading episode:', error);
-    displayError('Failed to load episode data. Please try again later.');
-  }
+    return params.get('id');
 }
 
-document.addEventListener('DOMContentLoaded', loadEpisode);
+async function fetchEpisode(id: string): Promise<Episode> {
+    const res = await fetch(`https://rickandmortyapi.com/api/episode/${id}`);
+    if (!res.ok) throw new Error('Episode not found');
+    return res.json();
+}
+
+async function fetchCharacters(urls: string[]): Promise<Character[]> {
+    if (urls.length === 0) return [];
+
+    const ids = urls.map(url => url.split('/').pop()).join(',');
+    const res = await fetch(`https://rickandmortyapi.com/api/character/${ids}`);
+    const data = await res.json();
+    return Array.isArray(data) ? data : [data];
+}
+
+async function loadEpisodeDetails(): Promise<void> {
+    try {
+        const id = getIdFromURL();
+        if (!id) throw new Error('No episode ID provided');
+
+        const episode = await fetchEpisode(id);
+
+        episodeName.textContent = episode.name;
+        episodeCode.textContent = episode.episode;
+        episodeDate.textContent = episode.air_date;
+
+        const characters = await fetchCharacters(episode.characters);
+
+        if (characters.length === 0) {
+            charactersContainer.innerHTML = '<p>No characters found in this episode.</p>';
+            return;
+        }
+
+        characters.forEach(character => {
+            const div = document.createElement('div');
+            div.className = 'character-card';
+            div.innerHTML = `
+                <img src="${character.image}" alt="${character.name}" />
+                <div class="character-info">
+                    <h3>${character.name}</h3>
+                    <p>${character.species}</p>
+                </div>
+            `;
+            div.addEventListener('click', () => {
+                window.location.href = `character.html?id=${character.id}`;
+            });
+            charactersContainer.appendChild(div);
+        });
+
+    } catch (err) {
+        episodeInfo.innerHTML = `<h1>Error loading episode</h1><p>${err instanceof Error ? err.message : 'Unknown error'}</p>`;
+    }
+}
+
+loadEpisodeDetails();

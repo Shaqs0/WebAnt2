@@ -1,64 +1,204 @@
-
-.episode--back-link {
-  display: block;
-  margin: 1rem 2rem;
-  color: #333;
-  font-size: 14px;
+.episode-details__info {
+    text-align: center;
+    padding: 20px 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
 }
 
-.episode--details {
-  text-align: center;
-  padding: 0 2rem;
+.episode-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    margin-bottom: 30px;
 }
 
-.episode--title {
-  margin: 1rem 0 0.5rem;
-  font-size: 2rem;
+.episode-details__go-back {
+    position: absolute;
+    left: 2rem;
+    text-decoration: none;
+    color: #000;
+    font-family: Karla;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    display: flex;
+    align-items: center;
+    gap: 8px;
 }
 
-.episode--meta {
-  display: flex;
-  justify-content: center;
-  gap: 3rem;
-  margin-bottom: 2rem;
-  font-size: 0.95rem;
-  color: #555;
+.go-back-content {
+    display: flex;
+    align-items: center;
+    gap: 8px;
 }
 
-.episode--cast-heading {
-  font-size: 1.5rem;
-  margin-bottom: 1rem;
-  text-align: left;
-  padding-left: 2rem;
+.back-arrow {
+    width: 24px;
+    height: 24px;
 }
 
-.episode--cast {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-  gap: 1.5rem;
-  padding: 0 2rem 3rem;
+.episode-name {
+    color: #081F32;
+    text-align: center;
+    font-feature-settings: 'liga' off, 'clig' off;
+    font-family: Roboto;
+    font-size: 36px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    margin: 0;
 }
 
-.episode--cast-member {
-  border-radius: 8px;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-  overflow: hidden;
-  text-align: center;
-  background: #fff;
-  cursor: pointer;
-  transition: transform 0.2s ease;
+.episode-info {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 224px;
+    margin-top: 30px;
 }
 
-.episode--cast-member:hover {
-  transform: translateY(-5px);
+.episode-code,
+.episode-date {
+    display: flex;
+    flex-direction: column;
+    text-align: start;
+    color: #6E798C;
+    font-feature-settings: 'liga' off, 'clig' off;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 20px;
+    letter-spacing: 0.25px;
 }
 
-.episode--cast-member img {
-  width: 100%;
-  height: auto;
+.episode-code strong,
+.episode-date strong {
+    color: #081F32;
+    font-feature-settings: 'liga' off, 'clig' off;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 24px;
+    letter-spacing: 0.15px;
 }
 
-.episode--cast-member small {
-  color: #666;
-  font-size: 0.85rem;
+.title {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    box-sizing: border-box;
+}
+
+.episode-details__characters-title {
+    color: #8E8E93;
+    font-feature-settings: 'liga' off, 'clig' off;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 24px;
+    letter-spacing: 0.15px;
+    width: 100%;
+    text-align: left;
+    margin-top: 10px;
+    margin-bottom: -5px;
+}
+
+.episode-details__characters {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+    padding: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.character-card {
+    display: flex;
+    flex-direction: column;
+    background-color: #fff;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0px 1px 5px 0px rgba(0, 0, 0, 0.20),
+                0px 3px 4px 0px rgba(0, 0, 0, 0.12),
+                0px 2px 4px 0px rgba(0, 0, 0, 0.14);
+    transition: transform 0.2s ease;
+    cursor: pointer;
+}
+
+.character-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0px 3px 5px 0px rgba(0, 0, 0, 0.25),
+                0px 5px 5px 0px rgba(0, 0, 0, 0.20),
+                0px 4px 5px 0px rgba(0, 0, 0, 0.20);
+}
+
+.character-card img {
+    width: 100%;
+    height: 224px;
+    object-fit: cover;
+}
+
+.character-info {
+    padding: 1rem;
+    text-align: left;
+}
+
+.character-info h3 {
+    color: rgba(0, 0, 0, 0.87);
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 30px;
+    letter-spacing: 0.15px;
+    margin-top: -0px;
+}
+
+.character-info p {
+    color: rgba(0, 0, 0, 0.60);
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 21px;
+    letter-spacing: 0.25px;
+    margin-top: -15px;
+    margin-bottom: -5px;
+}
+
+@media (max-width: 1024px) {
+    .episode-details__characters {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .episode-details__characters {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .episode-info {
+        gap: 122px;
+    }
+}
+
+@media (max-width: 480px) {
+    .episode-details__characters {
+        grid-template-columns: 1fr;
+    }
+    .episode-info {
+        flex-direction: column;
+        gap: 20px;
+        align-items: flex-start;
+        padding: 0 2rem;
+    }
+    .episode-details__go-back {
+        position: static;
+        margin-bottom: 20px;
+    }
+    .episode-header {
+        flex-direction: column;
+    }
 }
