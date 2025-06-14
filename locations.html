@@ -26,15 +26,30 @@
       </ul>
     </nav>
   </header>
-  
- <div class="filters--locations">
-  <input type="text" id="nameFilter" placeholder="Filter by name..." class="filter--locations">
-  <select id="typeFilter" class="filter--locations">
-    <option value="">Type</option>
-  </select>
-  <select id="dimensionFilter" class="filter--locations">
-    <option value="">Dimension</option>
-  </select>
+ <main class="main-content">
+   <div class="img-container">
+        <img src="./src/images/locaions.png" alt="Characters banner">
+    </div>
+
+ <div class="filters-container">
+ <form class="filters-form"">
+    <div class="search-input-container">
+      <img src="src/images/icons/search_icon.svg" alt="Search" class="search-icon">
+      <input type="text" id="nameFilter" placeholder="Filter by name..." class="filter-input search-input">
+    </div>
+    <div class="select-wrapper">
+      <select id="typeFilter" class="filter-select">
+        <option value="">Type</option>
+      </select>
+      <img src="src/images/icons/arrow-drop-down.svg" alt="▼" class="select-arrow">
+    </div>
+    <div class="select-wrapper">
+    <select id="dimensionFilter" class="filter-select">
+      <option value="">Dimension</option>
+    </select>
+    <img src="src/images/icons/arrow-drop-down.svg" alt="▼" class="select-arrow">
+    </div>
+  </form>
 </div>
 
 <div class="cards--locations" id="locationsContainer"></div>
@@ -42,7 +57,7 @@
 <div class="load-more-container--locations">
   <button class="load-more--locations" id="loadMoreBtn">LOAD MORE</button>
 </div>
-
+</main>
   <script src="./src/dist/api/locations.js" type="module"></script>
 </body>
 </html>

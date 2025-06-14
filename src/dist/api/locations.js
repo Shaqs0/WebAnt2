@@ -75,7 +75,6 @@ function renderMore() {
         div.innerHTML = `
     <strong>${loc.name}</strong>
     <small>${loc.type}</small>
-    <small>${loc.dimension}</small>
   `;
         div.addEventListener('click', () => {
             window.location.href = `/location.html?id=${loc.id}`;
