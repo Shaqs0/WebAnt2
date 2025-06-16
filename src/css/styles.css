@@ -1,9 +1,9 @@
 @import url('../blocks/header.css');
 @import url('../blocks/footer.css');
 
-/* *{
+/*{
       outline: 1px solid grey !important;
-} */
+}*/
 
 * {
   box-sizing: border-box;

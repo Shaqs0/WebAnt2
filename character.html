@@ -9,12 +9,17 @@
   <link rel="stylesheet" href="src/css/pages-css/character.css" />
 </head>
 <body>
-    <header class="head">
+     <header class="head">
         <div class="header_logo">
             <a href="index.html">
              <img src="src/images/icons/header_logo.svg" alt="Rick and Morty Logo"/>
             </a>
         </div>
+        <div class="hamburger">
+    <span></span>
+    <span></span>
+    <span></span>
+</div>
         <nav class="header__nav">
             <ul class="header__menu">
                 <li class="header__menu-item"><a href="index.html" class="header__link">Characters</a></li>
@@ -31,5 +36,6 @@
 
   <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
   <script src="./src/dist/api/character.js" type="module"></script>
+   <script src="./src/burger-menu.js" type="module"></script>
 </body>
 </html>

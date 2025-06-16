@@ -13,19 +13,24 @@
 </head>
 <body>
   <header class="head">
-    <div class="header_logo">
-      <a href="index.html">
-        <img src="src/images/icons/header_logo.svg" alt="Rick and Morty Logo"/>
-      </a>
-    </div>
-    <nav class="header__nav">
-      <ul class="header__menu">
-        <li class="header__menu-item"><a href="index.html" class="header__link">Characters</a></li>
-        <li class="header__menu-item"><a href="locations.html" class="header__link">Locations</a></li>
-        <li class="header__menu-item"><a href="episodes.html" class="header__link">Episodes</a></li>
-      </ul>
-    </nav>
-  </header>
+        <div class="header_logo">
+            <a href="index.html">
+             <img src="src/images/icons/header_logo.svg" alt="Rick and Morty Logo"/>
+            </a>
+        </div>
+        <div class="hamburger">
+    <span></span>
+    <span></span>
+    <span></span>
+</div>
+        <nav class="header__nav">
+            <ul class="header__menu">
+                <li class="header__menu-item"><a href="index.html" class="header__link">Characters</a></li>
+                <li class="header__menu-item"><a href="locations.html" class="header__link">Locations</a></li>
+                <li class="header__menu-item"><a href="episodes.html" class="header__link">Episodes</a></li>
+            </ul>
+        </nav>
+    </header>
  <main class="main-content">
    <div class="img-container">
         <img src="./src/images/locaions.png" alt="Characters banner">
@@ -59,5 +64,6 @@
 </div>
 </main>
   <script src="./src/dist/api/locations.js" type="module"></script>
+   <script src="./src/burger-menu.js" type="module"></script>
 </body>
 </html>

@@ -241,7 +241,7 @@ box-shadow: 0px 1px 5px 0px rgba(0, 0, 0, 0.20), 0px 3px 4px 0px rgba(0, 0, 0, 0
     pointer-events: none;
 }
 
-@media (max-width: 1024px) {
+@media (max-width: 1100px) {
     .cards--locations  {
         grid-template-columns: repeat(3, 1fr);
     }
@@ -251,14 +251,10 @@ box-shadow: 0px 1px 5px 0px rgba(0, 0, 0, 0.20), 0px 3px 4px 0px rgba(0, 0, 0, 0
         justify-content: center;
     }
     
-    .search-input-container,
-    .select-wrapper {
-        width: 100%;
-        max-width: 300px;
-    }
+
 }
 
-@media (max-width: 768px) {
+@media (max-width: 868px) {
     .cards--locations  {
         grid-template-columns: repeat(2, 1fr);
     }
@@ -273,7 +269,7 @@ box-shadow: 0px 1px 5px 0px rgba(0, 0, 0, 0.20), 0px 3px 4px 0px rgba(0, 0, 0, 0
     }
 }
 
-@media (max-width: 480px) {
+@media (max-width: 580px) {
     .cards--locations  {
         grid-template-columns: 1fr;
     }
