@@ -11,6 +11,7 @@
   <link rel="stylesheet" href="src/css/styles.css" />
   <link rel="stylesheet" href="src/css/pages-css/index.css" />
 </head>
+
 <body>
     <header class="head">
         <div class="header_logo">
@@ -36,9 +37,11 @@
             <img src="./src/images/characters.png" alt="Characters banner">
         </div>
 
-        <div class="filters-container">
+          <div class="filters-container">
+        <button class="mobile-filters-btn" id="mobileFiltersBtn">ADVANCED FILTERS</button>
+        
         <form id="filtersForm" class="filters-form">
-            <div class="search-input-container">
+            <div class="search-input-container select-wrapper">
                 <img src="src/images/icons/search_icon.svg" alt="Search" class="search-icon">
                 <input type="text" id="name" name="name" placeholder="Filter by name..." class="filter-input search-input" />
             </div>
@@ -75,9 +78,50 @@
             </div>
         </form>
     </div>
-    <div id="loader" class="loader hidden">
-    <div class="spinner"></div>
+    
+    <div class="filters-modal" id="filtersModal">
+        <div class="filters-modal-content">
+            <div class="filters-modal-header">Filters</div>
+            
+            <div class="modal-select-wrapper">
+                <label for="modal-species">Species</label>
+                <select id="modal-species" name="species" class="filter-select">
+                    <option value="">All Species</option>
+                    <option value="Human">Human</option>
+                    <option value="Alien">Alien</option>
+                    <option value="Animal">Animal</option>
+                </select>
+            </div>
+            
+            <div class="modal-select-wrapper">
+                <label for="modal-gender">Gender</label>
+                <select id="modal-gender" name="gender" class="filter-select">
+                    <option value="">All Genders</option>
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                    <option value="Genderless">Genderless</option>
+                    <option value="unknown">Unknown</option>
+                </select>
+            </div>
+            
+            <div class="modal-select-wrapper">
+                <label for="modal-status">Status</label>
+                <select id="modal-status" name="status" class="filter-select">
+                    <option value="">All Statuses</option>
+                    <option value="alive">Alive</option>
+                    <option value="dead">Dead</option>
+                    <option value="unknown">Unknown</option>
+                </select>
+            </div>
+            
+            <button id="applyFilters" class="apply-filters-btn">APPLY</button>
+        </div>
     </div>
+
+
+        <div id="loader" class="loader hidden">
+            <div class="spinner"></div>
+        </div>
         <div class="characters-container" id="charactersContainer"></div>
         <div class="load-more-container">
             <button id="loadMoreBtn" class="load-more-btn">Load More</button>
@@ -87,5 +131,6 @@
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="./src/dist/api/characters.js" type="module"></script>
     <script src="./src/burger-menu.js" type="module"></script>
+    
 </body>
 </html>

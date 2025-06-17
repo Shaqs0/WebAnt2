@@ -13,6 +13,12 @@ const nameInput = document.getElementById('nameFilter') as HTMLInputElement;
 const typeFilter = document.getElementById('typeFilter') as HTMLSelectElement;
 const dimensionFilter = document.getElementById('dimensionFilter') as HTMLSelectElement;
 
+const mobileFiltersBtn = document.getElementById('mobileFiltersBtn') as HTMLButtonElement;
+const filtersModal = document.getElementById('filtersModal') as HTMLElement;
+const applyFiltersBtn = document.getElementById('applyFilters') as HTMLButtonElement;
+const modalTypeFilter = document.getElementById('modal-type') as HTMLSelectElement;
+const modalDimensionFilter = document.getElementById('modal-dimension') as HTMLSelectElement;
+
 let allLocations: Location[] = [];
 let filteredLocations: Location[] = [];
 let renderedCount = 0;
@@ -24,14 +30,19 @@ async function fetchLocations(page = 1): Promise<ApiResponse> {
 }
 
 async function loadInitialData(): Promise<void> {
-  let nextPage: number | null = 1;
-  while (nextPage) {
-    const { info, results } = await fetchLocations(nextPage);
-    allLocations.push(...results);
-    nextPage = info.next ? parseInt(new URL(info.next).searchParams.get('page') || '0') : null;
+  try {
+    let nextPage: number | null = 1;
+    while (nextPage) {
+      const { info, results } = await fetchLocations(nextPage);
+      allLocations.push(...results);
+      nextPage = info.next ? parseInt(new URL(info.next).searchParams.get('page') || '0') : null;
+    }
+    populateFilters();
+    applyFilters();
+  } catch (error) {
+    console.error('Error loading locations:', error);
+    locationsContainer.innerHTML = '<p>Error loading locations. Please try again later.</p>';
   }
-  populateFilters();
-  applyFilters();
 }
 
 function populateFilters(): void {
@@ -43,18 +54,26 @@ function populateFilters(): void {
     if (loc.dimension) dimensions.add(loc.dimension);
   });
 
+  typeFilter.innerHTML = '<option value="">Type</option>';
+  dimensionFilter.innerHTML = '<option value="">Dimension</option>';
+  
+  modalTypeFilter.innerHTML = '<option value="">All Types</option>';
+  modalDimensionFilter.innerHTML = '<option value="">All Dimensions</option>';
+
   types.forEach(type => {
     const opt = document.createElement('option');
     opt.value = type;
     opt.textContent = type;
-    typeFilter.appendChild(opt);
+    typeFilter.appendChild(opt.cloneNode(true));
+    modalTypeFilter.appendChild(opt);
   });
 
   dimensions.forEach(dim => {
     const opt = document.createElement('option');
     opt.value = dim;
     opt.textContent = dim;
-    dimensionFilter.appendChild(opt);
+    dimensionFilter.appendChild(opt.cloneNode(true));
+    modalDimensionFilter.appendChild(opt);
   });
 }
 
@@ -77,13 +96,19 @@ function applyFilters(): void {
 function renderMore(): void {
   const locationsToRender = filteredLocations.slice(renderedCount, renderedCount + 12);
 
+  if (locationsToRender.length === 0 && renderedCount === 0) {
+    locationsContainer.innerHTML = '<p>No locations found matching your criteria.</p>';
+    loadMoreBtn.style.display = 'none';
+    return;
+  }
+
   locationsToRender.forEach(loc => {
     const div = document.createElement('div');
     div.className = 'location-card';
     div.innerHTML = `
-    <strong>${loc.name}</strong>
-    <small>${loc.type}</small>
-  `;
+      <strong>${loc.name}</strong>
+      <small>${loc.type}</small>
+    `;
     div.addEventListener('click', () => {
       window.location.href = `/location.html?id=${loc.id}`;
     });
@@ -94,11 +119,33 @@ function renderMore(): void {
   loadMoreBtn.style.display = renderedCount >= filteredLocations.length ? 'none' : 'inline-block';
 }
 
+function setupEventListeners(): void {
+  nameInput.addEventListener('input', applyFilters);
+  typeFilter.addEventListener('change', applyFilters);
+  dimensionFilter.addEventListener('change', applyFilters);
+  loadMoreBtn.addEventListener('click', renderMore);
 
-nameInput.addEventListener('input', applyFilters);
-typeFilter.addEventListener('change', applyFilters);
-dimensionFilter.addEventListener('change', applyFilters);
-loadMoreBtn.addEventListener('click', renderMore);
+  mobileFiltersBtn.addEventListener('click', () => {
+    modalTypeFilter.value = typeFilter.value;
+    modalDimensionFilter.value = dimensionFilter.value;
+    filtersModal.style.display = 'flex';
+  });
 
+  applyFiltersBtn.addEventListener('click', () => {
+    typeFilter.value = modalTypeFilter.value;
+    dimensionFilter.value = modalDimensionFilter.value;
+    filtersModal.style.display = 'none';
+    applyFilters();
+  });
 
-loadInitialData();
+  filtersModal.addEventListener('click', (e) => {
+    if (e.target === filtersModal) {
+      filtersModal.style.display = 'none';
+    }
+  });
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  setupEventListeners();
+  loadInitialData();
+});

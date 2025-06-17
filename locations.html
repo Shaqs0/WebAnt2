@@ -13,57 +13,85 @@
 </head>
 <body>
   <header class="head">
-        <div class="header_logo">
-            <a href="index.html">
-             <img src="src/images/icons/header_logo.svg" alt="Rick and Morty Logo"/>
-            </a>
+    <div class="header_logo">
+      <a href="index.html">
+        <img src="src/images/icons/header_logo.svg" alt="Rick and Morty Logo"/>
+      </a>
+    </div>
+    <div class="hamburger">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+    <nav class="header__nav">
+      <ul class="header__menu">
+        <li class="header__menu-item"><a href="index.html" class="header__link">Characters</a></li>
+        <li class="header__menu-item"><a href="locations.html" class="header__link">Locations</a></li>
+        <li class="header__menu-item"><a href="episodes.html" class="header__link">Episodes</a></li>
+      </ul>
+    </nav>
+  </header>
+  
+  <main class="main-content">
+    <div class="img-container">
+      <img src="./src/images/locaions.png" alt="Characters banner">
+    </div>
+
+    <div class="filters-container">
+      <button class="mobile-filters-btn" id="mobileFiltersBtn">ADVANCED FILTERS</button>
+      
+      <form class="filters-form">
+        <div class="search-input-container">
+          <img src="src/images/icons/search_icon.svg" alt="Search" class="search-icon">
+          <input type="text" id="nameFilter" placeholder="Filter by name..." class="filter-input search-input">
         </div>
-        <div class="hamburger">
-    <span></span>
-    <span></span>
-    <span></span>
-</div>
-        <nav class="header__nav">
-            <ul class="header__menu">
-                <li class="header__menu-item"><a href="index.html" class="header__link">Characters</a></li>
-                <li class="header__menu-item"><a href="locations.html" class="header__link">Locations</a></li>
-                <li class="header__menu-item"><a href="episodes.html" class="header__link">Episodes</a></li>
-            </ul>
-        </nav>
-    </header>
- <main class="main-content">
-   <div class="img-container">
-        <img src="./src/images/locaions.png" alt="Characters banner">
+        <div class="select-wrapper">
+          <select id="typeFilter" class="filter-select">
+            <option value="">Type</option>
+          </select>
+          <img src="src/images/icons/arrow-drop-down.svg" alt="▼" class="select-arrow">
+        </div>
+        <div class="select-wrapper">
+          <select id="dimensionFilter" class="filter-select">
+            <option value="">Dimension</option>
+          </select>
+          <img src="src/images/icons/arrow-drop-down.svg" alt="▼" class="select-arrow">
+        </div>
+      </form>
     </div>
 
- <div class="filters-container">
- <form class="filters-form"">
-    <div class="search-input-container">
-      <img src="src/images/icons/search_icon.svg" alt="Search" class="search-icon">
-      <input type="text" id="nameFilter" placeholder="Filter by name..." class="filter-input search-input">
+    <!-- Модальное окно фильтров -->
+    <div class="filters-modal" id="filtersModal">
+      <div class="filters-modal-content">
+        <div class="filters-modal-header">Filters</div>
+        
+        <div class="modal-select-wrapper">
+          <label for="modal-type">Type</label>
+          <select id="modal-type" class="filter-select">
+            <option value="">All Types</option>
+          </select>
+        </div>
+        
+        <div class="modal-select-wrapper">
+          <label for="modal-dimension">Dimension</label>
+          <select id="modal-dimension" class="filter-select">
+            <option value="">All Dimensions</option>
+          </select>
+        </div>
+        
+        <button id="applyFilters" class="apply-filters-btn">APPLY</button>
+      </div>
     </div>
-    <div class="select-wrapper">
-      <select id="typeFilter" class="filter-select">
-        <option value="">Type</option>
-      </select>
-      <img src="src/images/icons/arrow-drop-down.svg" alt="▼" class="select-arrow">
-    </div>
-    <div class="select-wrapper">
-    <select id="dimensionFilter" class="filter-select">
-      <option value="">Dimension</option>
-    </select>
-    <img src="src/images/icons/arrow-drop-down.svg" alt="▼" class="select-arrow">
-    </div>
-  </form>
-</div>
 
-<div class="cards--locations" id="locationsContainer"></div>
+    <div class="cards--locations" id="locationsContainer"></div>
 
-<div class="load-more-container--locations">
-  <button class="load-more--locations" id="loadMoreBtn">LOAD MORE</button>
-</div>
-</main>
+    <div class="load-more-container--locations">
+      <button class="load-more--locations" id="loadMoreBtn">LOAD MORE</button>
+    </div>
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
   <script src="./src/dist/api/locations.js" type="module"></script>
-   <script src="./src/burger-menu.js" type="module"></script>
+  <script src="./src/burger-menu.js" type="module"></script>
 </body>
 </html>
