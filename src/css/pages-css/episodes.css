@@ -375,19 +375,32 @@ box-shadow: 0px 1px 5px 0px rgba(0, 0, 0, 0.20), 0px 3px 4px 0px rgba(0, 0, 0, 0
     .search-input {
         padding: 10px 10px 10px 36px;
         height: 44px;
+        
     }
     
     .search-input-container {
-        width: 100%;
-        padding: 0 16px; 
+        display: flex;
+        width: 312px;
+        padding: 16px;
+        align-items: center;
+        gap: 8px;
+        flex-shrink: 0;
+        align-self: stretch;
     }
 
      .episodes-container {
     grid-template-columns: 1fr;
   }
+  .search-icon {
+        width: 20px;
+        height: 20px;
+        top: 35%;
+        left: 10%;
+    }
   
   .episode-card {
     width: 100%;
     max-width: none;
   }
 }
+

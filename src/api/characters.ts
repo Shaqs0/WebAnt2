@@ -140,11 +140,11 @@ const setupCardClick = () => {
         }
     });
 };
-
-const setupMobileFilters = () => {
+const setupMobileFilters = (): void => {
     const mobileFiltersBtn = document.getElementById("mobileFiltersBtn") as HTMLButtonElement | null;
     const filtersModal = document.getElementById("filtersModal") as HTMLDivElement | null;
     const applyFilters = document.getElementById("applyFilters") as HTMLButtonElement | null;
+    const closeModalBtn = document.querySelector(".filters-modal-header img") as HTMLImageElement | null; 
     
     const modalSpecies = document.getElementById("modal-species") as HTMLSelectElement | null;
     const modalGender = document.getElementById("modal-gender") as HTMLSelectElement | null;
@@ -155,7 +155,7 @@ const setupMobileFilters = () => {
     const status = document.getElementById("status") as HTMLSelectElement | null;
     
     if (mobileFiltersBtn && filtersModal) {
-        mobileFiltersBtn.addEventListener("click", function() {
+        mobileFiltersBtn.addEventListener("click", () => {
             if (modalSpecies && species) modalSpecies.value = species.value;
             if (modalGender && gender) modalGender.value = gender.value;
             if (modalStatus && status) modalStatus.value = status.value;
@@ -164,24 +164,32 @@ const setupMobileFilters = () => {
         });
     }
     
+    if (closeModalBtn && filtersModal) {
+        closeModalBtn.addEventListener("click", (e) => {
+            e.stopPropagation(); 
+            filtersModal.style.display = "none";
+        });
+    }
+    
     if (filtersModal) {
-        filtersModal.addEventListener("click", function(e) {
+        filtersModal.addEventListener("click", (e) => {
             if (e.target === filtersModal) {
                 filtersModal.style.display = "none";
             }
         });
     }
     
-    if (applyFilters && filtersModal && species && gender && status) {
-        applyFilters.addEventListener("click", function() {
+    if (applyFilters && species && gender && status) {
+        applyFilters.addEventListener("click", () => {
             if (modalSpecies) species.value = modalSpecies.value;
             if (modalGender) gender.value = modalGender.value;
             if (modalStatus) status.value = modalStatus.value;
             
-            const event = new Event("input");
-            species.dispatchEvent(event);
+            species.dispatchEvent(new Event("input"));
             
-            filtersModal.style.display = "none";
+            if (filtersModal) {
+                filtersModal.style.display = "none";
+            }
         });
     }
 };

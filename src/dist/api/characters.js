@@ -126,17 +126,15 @@ const setupMobileFilters = () => {
     const mobileFiltersBtn = document.getElementById("mobileFiltersBtn");
     const filtersModal = document.getElementById("filtersModal");
     const applyFilters = document.getElementById("applyFilters");
-    // Modal select elements
+    const closeModalBtn = document.querySelector(".filters-modal-header img");
     const modalSpecies = document.getElementById("modal-species");
     const modalGender = document.getElementById("modal-gender");
     const modalStatus = document.getElementById("modal-status");
-    // Original select elements
     const species = document.getElementById("species");
     const gender = document.getElementById("gender");
     const status = document.getElementById("status");
     if (mobileFiltersBtn && filtersModal) {
-        mobileFiltersBtn.addEventListener("click", function () {
-            // Sync current values to modal selects
+        mobileFiltersBtn.addEventListener("click", () => {
             if (modalSpecies && species)
                 modalSpecies.value = species.value;
             if (modalGender && gender)
@@ -146,26 +144,31 @@ const setupMobileFilters = () => {
             filtersModal.style.display = "flex";
         });
     }
+    if (closeModalBtn && filtersModal) {
+        closeModalBtn.addEventListener("click", (e) => {
+            e.stopPropagation();
+            filtersModal.style.display = "none";
+        });
+    }
     if (filtersModal) {
-        filtersModal.addEventListener("click", function (e) {
+        filtersModal.addEventListener("click", (e) => {
             if (e.target === filtersModal) {
                 filtersModal.style.display = "none";
             }
         });
     }
-    if (applyFilters && filtersModal && species && gender && status) {
-        applyFilters.addEventListener("click", function () {
-            // Apply selected values to original selects
+    if (applyFilters && species && gender && status) {
+        applyFilters.addEventListener("click", () => {
             if (modalSpecies)
                 species.value = modalSpecies.value;
             if (modalGender)
                 gender.value = modalGender.value;
             if (modalStatus)
                 status.value = modalStatus.value;
-            // Trigger filter change
-            const event = new Event("input");
-            species.dispatchEvent(event);
-            filtersModal.style.display = "none";
+            species.dispatchEvent(new Event("input"));
+            if (filtersModal) {
+                filtersModal.style.display = "none";
+            }
         });
     }
 };

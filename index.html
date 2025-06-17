@@ -38,7 +38,7 @@
         </div>
 
           <div class="filters-container">
-        <button class="mobile-filters-btn" id="mobileFiltersBtn">ADVANCED FILTERS</button>
+
         
         <form id="filtersForm" class="filters-form">
             <div class="search-input-container select-wrapper">
@@ -77,16 +77,23 @@
                 <img src="src/images/icons/arrow-drop-down.svg" alt="▼" class="select-arrow">
             </div>
         </form>
+      <button class="mobile-filters-btn" id="mobileFiltersBtn">
+    <img src="./src/images/icons/filter_list_24px.svg" alt="Filter icon">
+    ADVANCED FILTERS
+</button>
     </div>
     
     <div class="filters-modal" id="filtersModal">
         <div class="filters-modal-content">
-            <div class="filters-modal-header">Filters</div>
+            <div class="filters-modal-header">
+                <p>Filters</p>
+                <img src="./src/images/icons/close_24px.svg">
+            </div>
+
             
             <div class="modal-select-wrapper">
-                <label for="modal-species">Species</label>
                 <select id="modal-species" name="species" class="filter-select">
-                    <option value="">All Species</option>
+                    <option value="">Species</option>
                     <option value="Human">Human</option>
                     <option value="Alien">Alien</option>
                     <option value="Animal">Animal</option>
@@ -94,9 +101,8 @@
             </div>
             
             <div class="modal-select-wrapper">
-                <label for="modal-gender">Gender</label>
                 <select id="modal-gender" name="gender" class="filter-select">
-                    <option value="">All Genders</option>
+                    <option value="">Genders</option>
                     <option value="Male">Male</option>
                     <option value="Female">Female</option>
                     <option value="Genderless">Genderless</option>
@@ -105,9 +111,8 @@
             </div>
             
             <div class="modal-select-wrapper">
-                <label for="modal-status">Status</label>
                 <select id="modal-status" name="status" class="filter-select">
-                    <option value="">All Statuses</option>
+                    <option value="">Statuses</option>
                     <option value="alive">Alive</option>
                     <option value="dead">Dead</option>
                     <option value="unknown">Unknown</option>
