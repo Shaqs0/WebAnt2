@@ -63,26 +63,31 @@
     </div>
 
     <div class="filters-modal" id="filtersModal">
-      <div class="filters-modal-content">
-        <div class="filters-modal-header">Filters</div>
-        
-        <div class="modal-select-wrapper">
-          <label for="modal-type">Type</label>
-          <select id="modal-type" class="filter-select">
-            <option value="">All Types</option>
-          </select>
-        </div>
-        
-        <div class="modal-select-wrapper">
-          <label for="modal-dimension">Dimension</label>
-          <select id="modal-dimension" class="filter-select">
-            <option value="">All Dimensions</option>
-          </select>
-        </div>
-        
-        <button id="applyFilters" class="apply-filters-btn">APPLY</button>
-      </div>
+  <div class="filters-modal-content">
+    <div class="filters-modal-header">
+  <p>Filters</p>
+  <img id="closeModalBtn" src="./src/images/icons/close_24px.svg" alt="Close modal" class="close-modal-btn" />
+</div>
+
+
+    <div class="modal-select-wrapper">
+      <select id="modal-type" class="filter-select">
+        <option value="">All Types</option>
+      </select>
+      <img src="src/images/icons/arrow-drop-down.svg" alt="▼" class="select-arrow" />
     </div>
+
+    <div class="modal-select-wrapper">
+      <select id="modal-dimension" class="filter-select">
+        <option value="">All Dimensions</option>
+      </select>
+      <img src="src/images/icons/arrow-drop-down.svg" alt="▼" class="select-arrow" />
+    </div>
+
+    <button id="applyFilters" class="apply-filters-btn">APPLY</button>
+  </div>
+</div>
+
 
     <div class="cards--locations" id="locationsContainer"></div>
 

@@ -127,6 +127,10 @@ function setupEventListeners() {
             filtersModal.style.display = 'none';
         }
     });
+    const closeModalBtn = document.getElementById('closeModalBtn');
+    closeModalBtn.addEventListener('click', () => {
+        filtersModal.style.display = 'none';
+    });
 }
 document.addEventListener('DOMContentLoaded', () => {
     setupEventListeners();

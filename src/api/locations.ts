@@ -118,7 +118,6 @@ function renderMore(): void {
   renderedCount += locationsToRender.length;
   loadMoreBtn.style.display = renderedCount >= filteredLocations.length ? 'none' : 'inline-block';
 }
-
 function setupEventListeners(): void {
   nameInput.addEventListener('input', applyFilters);
   typeFilter.addEventListener('change', applyFilters);
@@ -143,7 +142,13 @@ function setupEventListeners(): void {
       filtersModal.style.display = 'none';
     }
   });
+
+  const closeModalBtn = document.getElementById('closeModalBtn') as HTMLImageElement;
+  closeModalBtn.addEventListener('click', () => {
+    filtersModal.style.display = 'none';
+  });
 }
+
 
 document.addEventListener('DOMContentLoaded', () => {
   setupEventListeners();
