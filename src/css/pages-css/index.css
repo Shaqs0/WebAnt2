@@ -324,40 +324,33 @@ box-shadow: 0px 1px 5px 0px rgba(0, 0, 0, 0.20), 0px 3px 4px 0px rgba(0, 0, 0, 0
       color: #555;
     }
     
-    .modal-select-wrapper select {
-      width: 100%;
-      padding: 10px;
-      border: 1px solid #ddd;
-      border-radius: 6px;
-      font-size: 16px;
-    }
-    
+
     .apply-filters-btn {
-      display: flex;
-        width: 316.39px;
-        height: 36px;
-        padding: 10px 16px;
-        justify-content: center;
-        align-items: center;
-        flex-shrink: 0;
-        border-radius: 4px;
-background: var(--Primary-50, #E3F2FD);
+  display: flex;
+  width: 100%;
+  height: 36px; 
+  padding: 0 16px;
+  justify-content: center;
+  align-items: center;
+  border-radius: 4px;
+  background: var(--Primary-50, #E3F2FD);
 
-/* 1 dp */
-box-shadow: 0px 0px 2px 0px rgba(0, 0, 0, 0.12), 0px 2px 2px 0px rgba(0, 0, 0, 0.24);
-border: none;
-color: var(--Primary-500---Accent, #2196F3);
-text-align: center;
+  box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.12), 0px 2px 2px rgba(0, 0, 0, 0.24);
+  border: none;
+  color: var(--Primary-500---Accent, #2196F3);
+  text-align: center;
 
-font-family: Roboto;
-font-size: 14px;
-font-style: normal;
-font-weight: 500;
-line-height: 16px; 
-letter-spacing: 1.25px;
-text-transform: uppercase;
-margin-bottom: 19px;
-    }
+  font-family: Roboto;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 16px;
+  letter-spacing: 1.25px;
+  text-transform: uppercase;
+  margin-bottom: 19px;
+  box-sizing: border-box;
+}
+
     
     .apply-filters-btn:active {
         background: var(--Primary-50, #bfced8);
@@ -384,6 +377,41 @@ margin-bottom: 19px;
 .close-modal-btn:hover {
     transform: scale(1.1);
 }
+
+.modal-select-wrapper {
+  position: relative;
+  margin-bottom: 20px;
+}
+
+.modal-select-wrapper select {
+  width: 100%;
+  height: 56px;
+  padding: 0 44px 0 16px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-size: 16px;
+  line-height: 56px;
+  appearance: none;
+  background-color: white;
+  color: #333;
+  font-family: inherit;
+  box-sizing: border-box;
+  cursor: pointer;
+}
+
+
+
+.modal-select-wrapper .select-arrow {
+  position: absolute;
+  top: 50%;
+  right: 12px;
+  transform: translateY(-50%);
+  pointer-events: none;
+  width: 24px;
+  height: 24px;
+}
+
+
 @media (max-width: 1100px) {
     .characters-container {
         grid-template-columns: repeat(3, 1fr);
